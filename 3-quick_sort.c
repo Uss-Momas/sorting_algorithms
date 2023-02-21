@@ -15,6 +15,7 @@ void quick_sort(int *array, size_t size)
  * @array: pointer to the array location
  * @start: start index of the array
  * @end: end index of the array
+ * @size: size of the array
  * Return: nothing
  */
 void quicksort(int *array, int start, int end, size_t size)
@@ -35,6 +36,7 @@ void quicksort(int *array, int start, int end, size_t size)
  * @array: the pointer to the original array
  * @start: start index of the array
  * @end: end index of the array
+ * @size: size of the array
  * Return: the pivot index
  */
 int lomuto_partition(int *array, int start, int end, size_t size)
