@@ -25,8 +25,8 @@ void quicksort(int *array, int start, int end, size_t size)
 	if (start < end)
 	{
 		pIndex = lomuto_partition(array, start, end, size);
-		quicksort(array, start, pIndex - 1, size); /*The left partition segment*/
-		quicksort(array, pIndex + 1, end, size); /*The right partition segment*/
+		quicksort(array, start, pIndex - 1, size); /*The left side of pivot*/
+		quicksort(array, pIndex + 1, end, size); /*The right side of pivot*/
 	}
 }
 
@@ -41,26 +41,38 @@ void quicksort(int *array, int start, int end, size_t size)
  */
 int lomuto_partition(int *array, int start, int end, size_t size)
 {
-	int pivot, pIndex, i, temp;
+	int pivot, pIndex, i;
 
 	pivot = array[end];
-	pIndex = start;
-	for (i = start; i < end; i++)
+	pIndex = start - 1;
+
+	for (i = start; i <= end - 1; i++)
 	{
 		if (array[i] <= pivot)
 		{
-			/* swap(array[i], array[pIndex]);*/
-			temp = array[i];
-			array[i] = array[pIndex];
-			array[pIndex] = temp;
 			pIndex++;
+			swap(&array[pIndex], &array[i]);
 		}
 	}
-	/* swap(array[i], array[pindex]);*/
-	temp = array[i];
-	array[i] = array[pIndex];
-	array[pIndex] = temp;
-	print_array(array, size);
-	return (pIndex);
+	if (pIndex != i)
+	{
+		swap(&array[pIndex + 1], &array[end]);
+		print_array(array, size);
+	}
+	return (pIndex + 1);
 }
 
+/**
+ * swap - swaps to elements
+ * @a: the first value location
+ * @b: the second value location
+ * Return: nothing
+ */
+void swap(int *a, int *b)
+{
+	int temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
