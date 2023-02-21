@@ -54,13 +54,13 @@ int lomuto_partition(int *array, int start, int end, size_t size)
 			array[i] = array[pIndex];
 			array[pIndex] = temp;
 			pIndex++;
-			print_array(array, size);
 		}
 	}
 	/* swap(array[i], array[pindex]);*/
 	temp = array[i];
 	array[i] = array[pIndex];
 	array[pIndex] = temp;
+	print_array(array, size);
 	return (pIndex);
 }
 
